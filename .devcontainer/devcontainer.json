@@ -1,0 +1,33 @@
+{
+  "name": "eShop",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-10.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": "true",
+      "moby": "true"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-azuretools.vscode-docker",
+        "ms-playwright.playwright",
+        "humao.rest-client",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "dotnet.defaultSolution": "eShop.slnx"
+      }
+    }
+  },
+  "postCreateCommand": "test -f package.json && npm ci && npx playwright install --with-deps chromium || echo 'Skipping npm setup'",
+  "remoteUser": "vscode"
+}
